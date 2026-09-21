@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Sunflower Day 🌻</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg1: #fff6c9;
+  --bg2: #ffd86b;
+  --text: #7a3e00;
+  --sub: #a4590a;
+  --card: rgba(255,255,255,0.55);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg1: #2a1a05; --bg2: #5a3a08; --text: #ffe9a8; --sub: #ffc861; --card: rgba(0,0,0,0.35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg1: #2a1a05; --bg2: #5a3a08; --text: #ffe9a8; --sub: #ffc861; --card: rgba(0,0,0,0.35);
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Quicksand', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.wrap {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 24px 20px 40px; text-align: center; position: relative;
+}
+.badge {
+  font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--sub);
+  animation: fadeUp 1s ease both;
+}
+h1 {
+  font-family: 'Dancing Script', cursive; font-size: clamp(36px, 9vw, 60px);
+  margin: 6px 0 0; animation: fadeUp 1s .2s ease both;
+}
+.flower { width: min(78vw, 340px); margin: 8px 0 0; cursor: pointer; animation: fadeUp 1.2s .1s ease both; touch-action: manipulation; }
+.flower svg { width: 100%; height: auto; overflow: visible; display: block; }
+.sway { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 3.2s ease-in-out infinite; }
+.head { transform-box: fill-box; transform-origin: 50% 50%; animation: shake 2.4s ease-in-out infinite; }
+.spin { transform-box: fill-box; transform-origin: 50% 50%; animation: slow 40s linear infinite; }
+.flower.excited .sway { animation: sway .35s ease-in-out infinite; }
+.flower.excited .head { animation: shake .18s ease-in-out infinite; }
+@keyframes sway { 0%,100% { transform: rotate(-2.5deg);} 50% { transform: rotate(2.5deg);} }
+@keyframes shake { 0%,100% { transform: rotate(-4deg);} 25% { transform: rotate(3deg);} 50% { transform: rotate(-2deg);} 75% { transform: rotate(4deg);} }
+@keyframes slow { to { transform: rotate(360deg);} }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px);} to { opacity: 1; transform: none;} }
+.card {
+  margin-top: 6px; max-width: 460px; background: var(--card);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-radius: 22px; padding: 20px 24px; animation: fadeUp 1.2s .6s ease both;
+  box-shadow: 0 8px 30px rgba(180,110,0,.18);
+}
+.line { font-family: 'Dancing Script', cursive; font-size: clamp(24px, 6.2vw, 32px); line-height: 1.35; margin: 0; }
+.hint { margin-top: 14px; font-size: 13px; color: var(--sub); opacity: .85; animation: fadeUp 1.2s 1s ease both; }
+.fall { position: fixed; top: -30px; pointer-events: none; z-index: 10; animation: drop linear forwards; }
+@keyframes drop { to { transform: translateY(115vh) rotate(540deg); opacity: .9; } }
+.bee { position: absolute; font-size: 26px; animation: fly 9s ease-in-out infinite; }
+@keyframes fly { 0%,100% { transform: translate(0,0) rotate(-8deg);} 25% { transform: translate(40px,-25px) rotate(10deg);} 50% { transform: translate(-20px,-45px) rotate(-6deg);} 75% { transform: translate(-50px,-10px) rotate(8deg);} }
+@media (prefers-reduced-motion: reduce) { .sway,.head,.spin,.bee { animation-duration: 8s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="bee" style="top:16%; left:14%;">🐝</span>
+  <span class="bee" style="top:30%; right:12%; animation-delay:-4s;">🐝</span>
+
+  <div class="badge">Sunflower Day</div>
+  <h1>Happy Sunflower Day,<br>Tuba 🌻</h1>
+
+  <div class="flower" id="flower" aria-label="A shaking sunflower. Tap it!">
+    <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+      <g class="sway">
+        <path d="M150 400 C 148 330, 152 270, 150 200" stroke="#3f8f3a" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M150 340 C 105 335, 80 305, 72 280 C 112 282, 140 305, 150 340 Z" fill="#4fae48"/>
+        <path d="M150 300 C 195 292, 222 265, 230 240 C 190 244, 160 265, 150 300 Z" fill="#4fae48"/>
+        <g class="head">
+          <g transform="translate(150 150)">
+            <g class="spin" id="petalsBack"></g>
+            <g class="spin" id="petalsFront" style="animation-direction:reverse"></g>
+            <circle r="42" fill="#6b3a12"/>
+            <circle r="42" fill="url(#seedShade)"/>
+            <g id="seeds"></g>
+          </g>
+        </g>
+      </g>
+      <defs>
+        <radialGradient id="seedShade" cx="50%" cy="45%" r="60%">
+          <stop offset="0" stop-color="#8a5220" stop-opacity=".0"/>
+          <stop offset="1" stop-color="#2b1404" stop-opacity=".55"/>
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="card">
+    <p class="line">Tuba, you are the sunflower of my life — <br>you turn every gloomy day toward the light. 💛</p>
+  </div>
+  <div class="hint">tap the sunflower 🌻</div>
+</div>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  function petal(angle, len, wid, fill, stroke) {
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", "M0 -34 C " + wid + " -" + (34 + len * 0.35) + ", " + wid * 0.7 + " -" + (34 + len * 0.85) + ", 0 -" + (34 + len) +
+      " C -" + wid * 0.7 + " -" + (34 + len * 0.85) + ", -" + wid + " -" + (34 + len * 0.35) + ", 0 -34 Z");
+    p.setAttribute("fill", fill);
+    p.setAttribute("stroke", stroke);
+    p.setAttribute("stroke-width", "1");
+    p.setAttribute("transform", "rotate(" + angle + ")");
+    return p;
+  }
+  var back = document.getElementById("petalsBack");
+  var front = document.getElementById("petalsFront");
+  for (var i = 0; i < 18; i++) back.appendChild(petal(i * 20 + 10, 78, 22, "#f5a800", "#d98a00"));
+  for (var j = 0; j < 18; j++) front.appendChild(petal(j * 20, 70, 20, "#ffcf1f", "#f0a800"));
+  var seeds = document.getElementById("seeds");
+  var golden = Math.PI * (3 - Math.sqrt(5));
+  for (var k = 1; k < 110; k++) {
+    var r = 3.6 * Math.sqrt(k), a = k * golden;
+    var c = document.createElementNS(NS, "circle");
+    c.setAttribute("cx", (r * Math.cos(a)).toFixed(2));
+    c.setAttribute("cy", (r * Math.sin(a)).toFixed(2));
+    c.setAttribute("r", (1.4 + k / 110).toFixed(2));
+    c.setAttribute("fill", k % 3 === 0 ? "#a8642b" : "#3d1f08");
+    seeds.appendChild(c);
+  }
+
+  var flower = document.getElementById("flower");
+  var emojis = ["🌻", "💛", "🌼", "✨"];
+  function burst() {
+    flower.classList.add("excited");
+    setTimeout(function () { flower.classList.remove("excited"); }, 900);
+    for (var i = 0; i < 22; i++) {
+      var s = document.createElement("span");
+      s.className = "fall";
+      s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.fontSize = (16 + Math.random() * 20) + "px";
+      s.style.animationDuration = (2.5 + Math.random() * 2.5) + "s";
+      s.style.animationDelay = (Math.random() * 0.6) + "s";
+      document.body.appendChild(s);
+      (function (el) { setTimeout(function () { el.remove(); }, 6500); })(s);
+    }
+  }
+  flower.addEventListener("click", burst);
+  setTimeout(burst, 900);
+})();
+</script>
+</body>
+</html>
